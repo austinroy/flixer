@@ -1,4 +1,5 @@
 import React,{ Component } from 'react';
+import { login, logout, isLoggedIn } from '../../utils/AuthService';
 
 class NavBar extends Component {
 
@@ -27,7 +28,9 @@ class NavBar extends Component {
                 </div>
 
                 <div className="navbar-end">
-                    <a href="" className="navbar-item has-text-danger">Logout</a>
+                    {
+                        (isLoggedIn()) ? ( <a className="navbar-item is-danger" onClick={() => logout()}>Log out </a> ) : ( <a className="navbar-item is-danger" onClick={() => login()}>Log In</a> )
+                    }
                 </div>
             </nav>
         )
