@@ -1,11 +1,14 @@
 import React,{ Component } from 'react';
 import { login, logout, isLoggedIn } from '../../utils/AuthService';
+import Auth from '../../utils/AuthService';
+
+const auth= new Auth();
 
 class NavBar extends Component {
 
     render() {
         return (
-            <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
+            <nav className="navbar is-dark" aria-label="main navigation">
                 <div className="navbar-brand">
                 <a className="navbar-item is-info" href="#" style={{ paddingLeft: 25  }}>
                     <span className="icon has-text-danger">
@@ -29,7 +32,7 @@ class NavBar extends Component {
 
                 <div className="navbar-end">
                     {
-                        (isLoggedIn()) ? ( <a className="navbar-item is-danger" onClick={() => logout()}>Log out </a> ) : ( <a className="navbar-item is-danger" onClick={() => login()}>Log In</a> )
+                        (auth.isAuthenticated()) ? ( <a className="navbar-item is-danger" onClick={() => auth.logout()}>Log out </a> ) : ( <a className="navbar-item is-danger" onClick={() => auth.login()}>Log In</a> )
                     }
                 </div>
             </nav>
